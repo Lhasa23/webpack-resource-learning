@@ -4,4 +4,14 @@ import generate from '@babel/generator'
 
 const code = `let a = 'let'; let b = 2`
 const ast = parse(code, { sourceType: 'module' })
-console.log(ast)
+traverse(ast, {
+	enter: item => {
+		if (item.node.type === 'VariableDeclaration') {
+			if (item.node.kind === 'let') {
+				item.node.kind = 'var'
+			}
+		}
+	}
+})
+const newCode = generate(ast, {}, code)
+console.log(newCode.code)
