@@ -1,4 +1,6 @@
 /node_modules
 /.idea
-/yarn.lock
+/no1-lesson/yarn.lock
 /dist
+*/yarn.lock
+*/yarn-error.log
